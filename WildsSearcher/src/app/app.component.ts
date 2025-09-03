@@ -1,13 +1,53 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'WildsSearcher';
+  token: string | null = null;
+  username: string | null = null;
+  
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+  //  this.token = localStorage.getItem('token');
+  //  if (!this.token) return;
+  //  this.username = this.authService.getUsernameFromToken(this.token);
+  }
+
+  main(): void {
+    this.router.navigate(['/']);
+  }
+
+  request(): void {
+    this.router.navigate(['/reqsend']);
+  }
+
+  aboutus(): void {
+    this.router.navigate(['/aboutus']);
+  }
+
+  contacts(): void {
+    this.router.navigate(['/contacts']);
+  }
+
+  hospitalfloor(): void {
+    this.router.navigate(['/hospitalfloor']);
+  }
+
+  profile(): void {
+    this.router.navigate(['/profile']);
+  }
+
+  login(): void {
+    this.router.navigate(['/login']);
+  }
 }

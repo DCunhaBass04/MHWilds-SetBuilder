@@ -1,0 +1,38 @@
+<div class="relative h-screen flex items-center justify-center 
+    bg-gray-700 bg-[url('/assets/windward_plains_5.png')] bg-cover bg-center px-8">
+
+  <div class="flex w-full max-w-6xl space-x-6 h-96">
+    
+    <div class="flex flex-col flex-1 space-y-6 text-white">
+      
+      <div class="flex space-x-4 w-full">
+        <!-- Method -->
+        <select [(ngModel)]="selectedMethod" class="p-3 rounded-lg bg-gray-800 border border-gray-600 w-32">
+          <option *ngFor="let method of methods" [value]="method">{{ method }}</option>
+        </select>
+
+        <!-- Input URL -->
+        <input [(ngModel)]="requestUrl" type="text" placeholder="https://api.exemplo.com/dados" 
+          class="flex-1 p-3 rounded-lg bg-gray-800 border border-gray-600 placeholder-gray-400" />
+      </div>
+
+      <!-- Body (Only for POST/PUT/PATCH) -->
+      <div *ngIf="selectedMethod !== 'GET' && selectedMethod !== 'DELETE'" class="w-full">
+        <textarea [(ngModel)]="requestBody" rows="6" placeholder="{ JSON body }" 
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 placeholder-gray-400"></textarea>
+      </div>
+
+      <!-- Send -->
+      <button (click)="sendRequest()" 
+        class="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 rounded-lg font-semibold">
+        Enviar Request
+      </button>
+
+    </div>
+
+    <div class="flex-1 bg-gray-800 border border-gray-700 rounded-lg p-4 h-[500px] overflow-auto">
+      <pre class="text-white whitespace-pre-wrap break-all">{{ responseData | json }}</pre>
+    </div>
+
+  </div>
+</div>
